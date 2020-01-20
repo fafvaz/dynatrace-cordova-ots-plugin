@@ -4,7 +4,7 @@
     "jsdom"
   ],
   "cordova": {
-    "id": "dynatrace-cordova-outsystems-plugin",
+    "id": "dynatrace-cordova-OTS-plugin",
     "platforms": [
       "ios",
       "android",
@@ -50,15 +50,15 @@
     "Ionic"
   ],
   "license": "private",
-  "name": "dynatrace-cordova-outsystems-plugin",
+  "name": "dynatrace-cordova-OTS-plugin",
   "version": "7.3.9",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dlopes7/dynatrace-cordova-outsystems-plugin.git"
+    "url": "git+https://github.com/fafvaz/dynatrace-cordova-OTS-plugin.git"
   },
-  "author": "David Lopes",
+  "author": "Fábio Vaz",
   "bugs": {
-    "url": "https://github.com/dlopes7/dynatrace-cordova-outsystems-plugin/issues"
+    "url": "https://github.com/fafvaz/dynatrace-cordova-OTS-plugin/issues"
   },
-  "homepage": "https://github.com/dlopes7/dynatrace-cordova-outsystems-plugin#readme"
+  "homepage": "https://github.com/fafvaz/dynatrace-cordova-OTS-plugin#readme"
 }
