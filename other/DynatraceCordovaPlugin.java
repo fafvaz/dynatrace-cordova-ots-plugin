@@ -78,7 +78,7 @@ public class DynatraceCordovaPlugin extends CordovaPlugin {
 				String name = args.getJSONObject(0).getString("name");
 				System.out.println("Attempting to end action: " + name);
 				DTXActionImpl action = currentActions.get(name);
-				// System.out.println("Got back action: " + String.valueOf(action));
+				System.out.println("Got back action: " + String.valueOf(action));
 				if (action != null) {
 					int code = action.leaveAction();
 					JSONObject returnMessage = new JSONObject();
