@@ -4,7 +4,7 @@
     "jsdom"
   ],
   "cordova": {
-    "id": "dynatrace-cordova-OTS-plugin",
+    "id": "dynatrace-cordova-ots-plugin",
     "platforms": [
       "ios",
       "android",
@@ -54,11 +54,11 @@
   "version": "7.3.9",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fafvaz/dynatrace-cordova-OTS-plugin.git"
+    "url": "git+https://github.com/fafvaz/dynatrace-cordova-ots-plugin.git"
   },
-  "author": "Fábio Vaz",
+  "author": "FÃ¡bio Vaz",
   "bugs": {
-    "url": "https://github.com/fafvaz/dynatrace-cordova-OTS-plugin/issues"
+    "url": "https://github.com/fafvaz/dynatrace-cordova-ots-plugin/issues"
   },
-  "homepage": "https://github.com/fafvaz/dynatrace-cordova-OTS-plugin#readme"
+  "homepage": "https://github.com/fafvaz/dynatrace-cordova-ots-plugin#readme"
 }
