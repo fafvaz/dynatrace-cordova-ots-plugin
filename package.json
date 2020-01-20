@@ -50,7 +50,7 @@
     "Ionic"
   ],
   "license": "private",
-  "name": "dynatrace-cordova-OTS-plugin",
+  "name": "dynatrace-cordova-ots-plugin",
   "version": "7.3.9",
   "repository": {
     "type": "git",
