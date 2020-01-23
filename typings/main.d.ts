@@ -1,6 +1,6 @@
 declare module DynatracePlugin {
-
-	interface JavaScriptAgentAppMon {
+	
+	interface JavaScriptAgentAppMon{
 
 		/**
 		 * Enter an action
@@ -10,7 +10,7 @@ declare module DynatracePlugin {
 		 * @param {number|boolean} parentAction - optional id of parent action. if parameter is not passed=> appended to currently running action, if false => root action, if a number is passed, action is added as subaction to action with given id.
 		 * @return id of created action
 		 */
-		enterAction(actionName: string, actionType: string, time?: number, parentID?: number): number;
+		enterAction(actionName: string, actionType: string, time?: number, parentID?: number) : number;
 
 		/**
 		 * Leaves an action
@@ -18,7 +18,7 @@ declare module DynatracePlugin {
 		 * @param {number} time - end time in milliseconds
 		 * @param {number} startTime - optional start time in milliseconds (necessary if start time should be modified)
 		 */
-		leaveAction(actionId: number, time?: number, startTime?: number): void;
+		leaveAction(actionId: number, time?: number, startTime?: number) : void;
 
 		/**
 		 * Reports an error message
@@ -29,41 +29,41 @@ declare module DynatracePlugin {
 		 *   except message are optional.
 		 * @param {number} parentActionId parent action id. if not passed or null, error is added to current action
 		 */
-		reportError(error: string, parentActionId?: number): void;
+		reportError(error: string, parentActionId?: number) : void;
 
 		/**
 		 * Reports a warning message
 		 * @param {string} warning - warning message
 		 * @param {number} parentActionId - parent action id. if not passed or null, error is added to current action
 		 */
-		reportWarning(warning: string, parentActionId?: number): void;
+		reportWarning(warning: string, parentActionId?: number) : void;
 
 		/**
 		 * Reports an event
 		 * @param {string} msg - message text
 		 * @param {number} parentActionId - parent action id. if not passed or null, error is added to current action
 		 */
-		reportEvent(msg: string, parentActionId?: number): void;
-
+		reportEvent(msg: string, parentActionId?: number) : void;
+		
 		/**
 		 * Reports a key value pair to the server. The data can e.g. be used to create charts.
 		 * @param {string} key - the key to identify the value
 		 * @param {number} value - the value to report
 		 */
-		reportValue(key: string, value: number): void;
+		reportValue(key: string, value: number) : void;
 
 		/**
 		 * Reports a key value pair to the server. The data can e.g. be used to create charts. The difference to the {@link reportValue} function is that here the value is a string.
 		 * @param {string} key - the key to identify the value
 		 * @param {string} value - the value to report
 		 */
-		reportString(key: string, str: string): void;
+		reportString(key: string, str: string) : void;
 
 		/**
 		 * Tags a visit with a String value.
 		 * @param {string} value - The value to tag the visit with (e.g. a username, a userid, an email address...)
 		 */
-		tagVisit(visit: string): void;
+		tagVisit(visit: string) : void;
 
 		/**
 		 * Indicates the start of a user input. User inputs must always be stopped by calling endUserInput.
@@ -101,29 +101,29 @@ declare module DynatracePlugin {
 		 * Enables/disables automatic action detection.
 		 * @param {boolean} enabled - true/false
 		 */
-		setAutomaticActionDetection(enabled: boolean): void;
+		setAutomaticActionDetection(enabled: boolean) : void;
 
 	}
-
-	interface JavaScriptAgentDynatrace {
-
+	
+	interface JavaScriptAgentDynatrace{
+		
 		/**
 		 * Enables/disables automatic action detection.
 		 * @param {boolean} enabled - true/false
 		 */
-		setAutomaticActionDetection(enabled: boolean): void;
-
+		setAutomaticActionDetection(enabled: boolean) : void;
+		
 		/**
 		 * Tells the js agent to not automatically detect load end. Load start and load end must be set explicitly via signalLoadEnd.
 		 * This function must be called immediately after the js agent script tag!
 		 */
-		setLoadEndManually(): void;
-
+		setLoadEndManually() : void;
+		
 		/**
 		 * Signals that the page has finished loading
 		 */
-		signalLoadEnd(): void;
-
+		signalLoadEnd() : void;
+		
 		/**
 		 * Enter an action
 		 * @param {string} actionName name o action
@@ -141,7 +141,7 @@ declare module DynatracePlugin {
 		 * @param {number=} startTime optional start time in milliseconds (necessary if start time should be modified)
 		 */
 		leaveAction(actionId: number, time?: number, startTime?: number): void;
-
+		
 		/**
 		 * Reports an error message
 		 *
@@ -154,20 +154,20 @@ declare module DynatracePlugin {
 		 * @param {number=} parentActionId parent action id. if not passed or null, error is added to current action
 		 */
 		reportError(error: Error | string, parentActionId?: number | boolean): void;
-
+		
 		/**
 		 * Identifies a user
 		 * @param {string} value - The value to name the user (e.g. a username, a userid, an email address...)
 		 */
 		identifyUser(value?: string): void;
-
+		
 		/**
 		 * Indicates the start of a third party resource
 		 * @param {char} type 'i'...image, 's'...script, 'c'... custom
 		 * @param {string} url complete URL of resource
 		 */
-		startThirdParty(type: 'i' | 's' | 'c', url: string): void;
-
+		startThirdParty(type: 'i'|'s'|'c', url: string): void;
+		
 		/**
 		 * Indicates stop of a third party resource
 		 * @param {string} url complete URL of resource (must match URL provided in startThirdParty)
@@ -176,13 +176,13 @@ declare module DynatracePlugin {
 		 * @param {number=} stop absolute stop time in milliseconds. Optional. When parameter is not passed or <=0, time of stopThirdParty call is used
 		 */
 		stopThirdParty(url: string, success: boolean, start?: number, stop?: number): void;
-
+		
 		/**
 		 * Adds a listener that is called when the user is leaving the page, but before the monitor signal is sent
 		 * @param {function()} listener a function that will be called in case the user leaves the page
 		 */
 		addPageLeavingListener(listener: EventListener): void;
-
+		
 		/**
 		 * Initiate ajax call
 		 * @param {string} type optional additional info about type of xhr (eg framework name,etc)
@@ -194,27 +194,27 @@ declare module DynatracePlugin {
 		 * @param {string} xhrUrl url of the requested resource
 		 * @return {number} id of the XhrAction
 		 */
-		enterXhrAction(type: string, xmode?: 0 | 1 | 2 | 3, xhrUrl?: string): number;
-
+		enterXhrAction(type: string, xmode?: 0|1|2|3, xhrUrl?: string): number;
+		
 		/**
 		 * Indicates the end of an xhr action
 		 * @param {number} actionId id of the xhr Action
 		 */
 		leaveXhrAction(actionId: number): void;
-
+		
 		/**
 		 * Indicates that an xhr callback is active (eg. XMLHttpRequest onreadystatechange). This is necessary to automatically add actions
 		 * started during a callback as subactions. Xhr callback must be stopped by endXhrCallback
 		 * @param {number} actionId id of the action where callback belongs to
 		 */
 		enterXhrCallback(actionId: number): void;
-
+		
 		/**
 		 * Indicates the end of an xhr callback.
 		 * @param {number} actionId id of the action where callback belongs to
 		 */
 		leaveXhrCallback(actionId: number): void;
-
+		
 		/**
 		 * Indicates the start of a load action. Frameworks often have their own load callback functions
 		 * this can be used when framework starts load before "DOMContentLoaded"
@@ -262,24 +262,24 @@ declare module DynatracePlugin {
 		 * @param listener
 		 */
 		addVisitTimeoutListener(listener: EventListener): void;
-
+		
 		/**
 		 * Enables persistent values again. Only applies if 'disablePersistentValues' has been called previously.
 		 */
 		enablePersistentValues(): void;
-
+	 
 	}
-
-	interface DynatraceMobile {
+	
+	interface DynatraceMobile{
 		/**
 		 * Sends an endSession signal to the server, which will cause the session to end without waiting for a timeout
 		 */
-		endVisit(success: any, error: any): number;
+		endVisit(success: any, error: any) : number;
 	}
-
+	
 }
 
-declare var dtrum: DynatracePlugin.JavaScriptAgentDynatrace;
-declare var dynaTrace: DynatracePlugin.JavaScriptAgentAppMon;
-declare var dynatraceMobile: DynatracePlugin.DynatraceMobile;
+declare var dtrum : DynatracePlugin.JavaScriptAgentDynatrace;
+declare var dynaTrace : DynatracePlugin.JavaScriptAgentAppMon;
+declare var dynatraceMobile : DynatracePlugin.DynatraceMobile;
 

@@ -3,7 +3,7 @@ package com.dynatrace.cordova.plugin;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.IOException;
-
+ 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
@@ -26,12 +26,11 @@ import com.dynatrace.android.agent.conf.AppMonConfigurationBuilder;
 import com.dynatrace.android.agent.util.Utility;
 
 public class DynatraceCordovaPlugin extends CordovaPlugin {
-
+	
 	public static final String ACTION_UEM_END_SESSION = "endVisit";
 	public static final String ACTION_UEM_ENTER_ACTION = "enterAction";
 	public static final String ACTION_UEM_LEAVE_ACTION = "leaveAction";
-	public static final String ACTION_UEM_ENTER_ACTION_PARENT = "enterActionParentId";
-
+	
 
 	public static final HashMap<String, DTXActionImpl> currentActions;
 
@@ -39,17 +38,17 @@ public class DynatraceCordovaPlugin extends CordovaPlugin {
 		currentActions = new HashMap<String, DTXActionImpl>();
 	}
 
-
+	
 	@Override
 	public void initialize(CordovaInterface cordova, CordovaWebView webView) {
 		super.initialize(cordova, webView);
-		Context context = cordova.getActivity().getApplicationContext();
-		System.out.println("Dynatrace - context: " + context.toString());
-		Configuration configuration = DynatraceCordovaPlugin.loadProperties(context);
-		System.out.println("Dynatrace - configuration: " + configuration.toString());
+			Context context = cordova.getActivity().getApplicationContext();
+			System.out.println("Dynatrace - context: " + context.toString());
+			Configuration configuration = DynatraceCordovaPlugin.loadProperties(context);
+			System.out.println("Dynatrace - configuration: " + configuration.toString());
 
-		int status = Dynatrace.startup(context, configuration);
-		System.out.println("Dynatrace - status code: " + String.valueOf(status));
+			int status = Dynatrace.startup(context, configuration);
+			System.out.println("Dynatrace - status code: " + String.valueOf(status));
 
 	}
 
@@ -59,12 +58,12 @@ public class DynatraceCordovaPlugin extends CordovaPlugin {
 			if (method.equals(ACTION_UEM_END_SESSION)) {
 				int status = Dynatrace.endVisit();
 				callbackContext.success(String.valueOf(status));
-
+				
 				return true;
 			}
 			if (method.equals(ACTION_UEM_ENTER_ACTION)) {
 				String name = args.getJSONObject(0).getString("name");
-
+				
 				DTXActionImpl action = (DTXActionImpl) Dynatrace.enterAction(name);
 				String actionId = action.getName() + "_" + String.valueOf(action.getTagId());
 				System.out.println("Starting action: " + name + ", ID: " + actionId + " and storing at: " + String.valueOf(currentActions));
@@ -91,52 +90,52 @@ public class DynatraceCordovaPlugin extends CordovaPlugin {
 			}
 
 			//  public static DTXAction enterAction(String actionName)
-
+			
 			return false;
 		} catch(Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			callbackContext.error(e.getMessage());
 			return false;
-		}
+		} 
 	}
 
 	public static Configuration loadProperties(Context context)
-	{
-		Map<String, String> properties;
-		ConfigurationBuilder builder;
-		try
-		{
-			properties = Utility.loadRuntimeProperties(context.getAssets().open("www/Dynatrace.properties"));
-		}
-		catch (IOException e) {
-			properties = new HashMap();
-		}
-
-		String applicationId = (String)properties.get("DTXApplicationID");
-		String beaconUrl = (String)properties.get("DTXBeaconURL");
-
-		if (beaconUrl != null)
-		{
-			builder = new DynatraceConfigurationBuilder(applicationId, beaconUrl);
-		}
-		else
-		{
-			String environment = (String)properties.get("DTXAgentEnvironment");
-			if (environment != null)
-			{
-				String isManagedCluster = (String)properties.get("DTXManagedCluster");
-				String clusterUrl = (String)properties.get("DTXClusterURL");
-
-				builder = new DynatraceConfigurationBuilder(applicationId, environment, clusterUrl, Boolean.parseBoolean(isManagedCluster));
-			}
-			else
-			{
-				String appMonStartupPath = (String)properties.get("DTXAgentStartupPath");
-				builder = new AppMonConfigurationBuilder(applicationId, appMonStartupPath);
-			}
-		}
-
-		return builder.loadProperties(context, properties).buildConfiguration();
+  {
+	  Map<String, String> properties;
+	  ConfigurationBuilder builder;
+	   try
+    {
+     properties = Utility.loadRuntimeProperties(context.getAssets().open("www/Dynatrace.properties"));
+    }
+    catch (IOException e) {
+		properties = new HashMap();
 	}
+
+	String applicationId = (String)properties.get("DTXApplicationID");
+	String beaconUrl = (String)properties.get("DTXBeaconURL");
+
+	if (beaconUrl != null)
+	{
+	builder = new DynatraceConfigurationBuilder(applicationId, beaconUrl);
+	}
+	else
+	{
+	String environment = (String)properties.get("DTXAgentEnvironment");
+	if (environment != null)
+	{
+		String isManagedCluster = (String)properties.get("DTXManagedCluster");
+		String clusterUrl = (String)properties.get("DTXClusterURL");
+		
+		builder = new DynatraceConfigurationBuilder(applicationId, environment, clusterUrl, Boolean.parseBoolean(isManagedCluster));
+	}
+	 else
+        {
+          String appMonStartupPath = (String)properties.get("DTXAgentStartupPath");
+          builder = new AppMonConfigurationBuilder(applicationId, appMonStartupPath);
+        }
+	}
+    
+    return builder.loadProperties(context, properties).buildConfiguration();
+  }
 
 }

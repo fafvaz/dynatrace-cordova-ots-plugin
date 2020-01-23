@@ -1,4 +1,34 @@
 {
+  "_from": "dynatrace-cordova-ots-plugin",
+  "_id": "dynatrace-cordova-ots-plugin@0.0.1-0003",
+  "_inBundle": false,
+  "_integrity": "sha512-x7+SckrrEfN38WlxvTEHUjvo0oFVZAOgiAZFLf+oonYSF4vxEQTgxDq3Sj1uoGKIB5e3pl+2Q8MT+jFm9la6Dg==",
+  "_location": "/dynatrace-cordova-ots-plugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "dynatrace-cordova-ots-plugin",
+    "name": "dynatrace-cordova-ots-plugin",
+    "escapedName": "dynatrace-cordova-ots-plugin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/dynatrace-cordova-ots-plugin/-/dynatrace-cordova-ots-plugin-0.0.1-0003.tgz",
+  "_shasum": "82e83d379576aac4716d0d2a91425ac367c89211",
+  "_spec": "dynatrace-cordova-ots-plugin",
+  "_where": "C:\\Users\\fabio.vaz\\source\\repos",
+  "author": {
+    "name": "Fábio Vaz"
+  },
+  "bugs": {
+    "url": "https://github.com/fafvaz/dynatrace-cordova-ots-plugin/issues"
+  },
   "bundleDependencies": [
     "request",
     "jsdom"
@@ -12,6 +42,7 @@
     ]
   },
   "dependencies": {
+    "dynatrace-cordova-plugin": "^7.2.8-1000",
     "jsdom": "^14.1.0",
     "request": "^2.79.0"
   },
@@ -39,6 +70,7 @@
     "typings/*",
     "package.json"
   ],
+  "homepage": "https://github.com/fafvaz/dynatrace-cordova-ots-plugin#readme",
   "keywords": [
     "Dynatrace",
     "Mobile",
@@ -51,14 +83,9 @@
   ],
   "license": "private",
   "name": "dynatrace-cordova-ots-plugin",
-  "version": "7.3.9",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fafvaz/dynatrace-cordova-ots-plugin.git"
   },
-  "author": "Fábio Vaz",
-  "bugs": {
-    "url": "https://github.com/fafvaz/dynatrace-cordova-ots-plugin/issues"
-  },
-  "homepage": "https://github.com/fafvaz/dynatrace-cordova-ots-plugin#readme"
+  "version": "0.0.1-0003"
 }
